@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMediaRecorder>
 #include <QUrl>
+#include <QtMultimedia/qsoundeffect.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class AudioRecorder; }
@@ -44,7 +45,8 @@ private:
     void updatePlaybackStatus();
     void playRecordedAudio();
     Ui::AudioRecorder* ui = nullptr;
-
+    QSoundEffect* s = nullptr;
+    QString tempFilename;
     QAudioRecorder* m_audioRecorder = nullptr;
     QAudioProbe* m_probe = nullptr;
     int labelNum = -1;

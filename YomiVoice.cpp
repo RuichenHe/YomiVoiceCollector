@@ -14,26 +14,29 @@
 #include <QMessageBox>
 #include <QtWidgets/QRadioButton>
 #include <QtMultimedia/qaudiodeviceinfo.h>
-#include <QtMultimedia/qsoundeffect.h>
+#include <QtCore/quuid.h>
+#include <QtCore/qfile.h>
+#include <fstream>
 static qreal getPeakValue(const QAudioFormat& format);
 static QVector<qreal> getBufferLevels(const QAudioBuffer& buffer);
 
 template <class T>
 static QVector<qreal> getBufferLevels(const T* buffer, int frames, int channels);
-//std::vector<std::string> commandList{
-//    "Yomi pause", "Yomi free", "Yomi baseline", "Tooth 1", "Tooth 2", "Tooth 3", "Tooth 4", "Tooth 5", "Tooth 6", 
-//    "Tooth 7", "Tooth 8", "Tooth 9", "Tooth 10", "Tooth 11", "Tooth 12", "Tooth 13", "Tooth 14", "Tooth 15", 
-//    "Tooth 16", "Tooth 17", "Tooth 18", "Tooth 19", "Tooth 20", "Tooth 21", "Tooth 22", "Tooth 23", "Tooth 24", 
-//    "Tooth 25", "Tooth 26", "Tooth 27", "Tooth 28", "Tooth 29", "Tooth 30", "Tooth 31", "Tooth 32"
-//};
 std::vector<std::string> commandList{
-    "Yomi pause", "Yomi free", "Yomi baseline"
+    "Yomi pause", "Yomi free", "Yomi baseline", "Tooth 1", "Tooth 2", "Tooth 3", "Tooth 4", "Tooth 5", "Tooth 6", 
+    "Tooth 7", "Tooth 8", "Tooth 9", "Tooth 10", "Tooth 11", "Tooth 12", "Tooth 13", "Tooth 14", "Tooth 15", 
+    "Tooth 16", "Tooth 17", "Tooth 18", "Tooth 19", "Tooth 20", "Tooth 21", "Tooth 22", "Tooth 23", "Tooth 24", 
+    "Tooth 25", "Tooth 26", "Tooth 27", "Tooth 28", "Tooth 29", "Tooth 30", "Tooth 31", "Tooth 32", 
+    "Previous page", "Next page"
 };
+//std::vector<std::string> commandList{
+//    "Yomi pause", "Yomi free", "Yomi baseline"
+//};
 AudioRecorder::AudioRecorder()
     : ui(new Ui::AudioRecorder)
 {
     ui->setupUi(this);
-
+    
     m_audioRecorder = new QAudioRecorder(this);
     m_probe = new QAudioProbe(this);
     connect(m_probe, &QAudioProbe::audioBufferProbed,
@@ -165,8 +168,8 @@ void AudioRecorder::toggleRecord()
 
         QAudioEncoderSettings settings;
         settings.setCodec("audio/pcm");
-        settings.setSampleRate(44100);
-        //settings.setBitRate(boxValue(ui->bitrateBox).toInt());
+        settings.setSampleRate(16000);
+        settings.setBitRate(64000);
         settings.setChannelCount(2);
         settings.setQuality(QMultimedia::VeryHighQuality);
         settings.setEncodingMode(QMultimedia::ConstantQualityEncoding);
@@ -381,15 +384,23 @@ void AudioRecorder::updatePlaybackStatus() {
 }
 void AudioRecorder::playRecordedAudio() {
     QString outputFilename = m_resultFolderLocation + "/" + ui->commandLabel->text().replace(" ", "_") + ".wav";
-    QSoundEffect* s = new QSoundEffect();
+    s = new QSoundEffect(this);
     connect(s, &QSoundEffect::playingChanged, this, &AudioRecorder::soundPlayingChanges);
-    s->setSource(QUrl::fromLocalFile(outputFilename));
+    const auto uuid = QUuid::createUuid();
+    tempFilename = m_resultFolderLocation + "/" + uuid.toString().replace("{", "").replace("}", "").replace("-", "") + ".wav";
+    qDebug() << outputFilename;
+    qDebug() << tempFilename;
+    std::ifstream  src(outputFilename.toStdString(), std::ios::binary);
+    std::ofstream  dst(tempFilename.toStdString(), std::ios::binary);
+    dst << src.rdbuf();
+    s->setSource(QUrl::fromLocalFile(tempFilename));
     s->setLoopCount(1);
     s->play();
     ui->playbackButton->setEnabled(false);
 }
 void AudioRecorder::soundPlayingChanges() {
     ui->playbackButton->setEnabled(true);
+    QFile::remove(tempFilename);
 }
 void AudioRecorder::preLabel() {
     labelNum = labelNum - 1;
