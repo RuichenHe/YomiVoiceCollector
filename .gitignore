@@ -341,3 +341,6 @@ healthchecksdb
 
 #labels folder
 labels
+
+#audio file
+*.wav
