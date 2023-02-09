@@ -1,5 +1,5 @@
 # [Yomi Voice Collector](https://github.com/RuichenHe/YomiVoiceCollector.git)
-This is an application for voice application. By following the command on the screen, user will go thourgh a list of commands and record theri sound accordingly. The collected voice files will be used to train a customized voice recognition model. 
+This is an application for voice application. By following the command on the screen, user will go thourgh a list of commands and record their sound accordingly. The collected voice files will be used to train a customized voice recognition model. 
 # Requirements
 1. Make sure the Qt5 has been installed on your computer, and has been added in the PATH. 
 2. Make sure the Visual Studio 2019 is installed on your computer.
