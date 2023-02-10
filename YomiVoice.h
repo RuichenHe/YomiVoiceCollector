@@ -17,7 +17,7 @@ class AudioLevel;
 
 class AudioRecorder : public QMainWindow
 {
-    Q_OBJECT
+    //Q_OBJECT
 
 public:
     AudioRecorder();
