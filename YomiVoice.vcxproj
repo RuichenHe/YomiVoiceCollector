@@ -69,11 +69,13 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>N:\NSB\x64\Debug\Qt\include;N:\NSB\x64\Debug\Qt\include\QtCore;N:\NSB\x64\Debug\Qt\include\QtGui;N:\NSB\x64\Debug\Qt\include\QtMultimedia;N:\NSB\x64\Debug\Qt\include\QtWidgets;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>N:\NSB\x64\Debug\Qt\lib\Qt5Multimediad.lib;N:\NSB\x64\Debug\Qt\lib\Qt5Quickd.lib;N:\NSB\x64\Debug\Qt\lib\Qt5QmlModelsd.lib;N:\NSB\x64\Debug\Qt\lib\Qt5Qmld.lib;N:\NSB\x64\Debug\Qt\lib\Qt5Networkd.lib;N:\NSB\x64\Debug\Qt\lib\Qt5WebViewd.lib;N:\NSB\x64\Debug\Qt\lib\Qt5Widgetsd.lib;N:\NSB\x64\Debug\Qt\lib\Qt5Guid.lib;N:\NSB\x64\Debug\Qt\lib\Qt5Cored.lib;N:\NSB\x64\Debug\Qt\lib\qtmaind.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
