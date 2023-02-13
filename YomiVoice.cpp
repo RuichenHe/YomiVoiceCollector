@@ -96,6 +96,7 @@ AudioRecorder::AudioRecorder()
     connect(ui->nextLabelButton, &QPushButton::clicked, this, &AudioRecorder::nextLabel);
     connect(ui->pushButton, &QPushButton::clicked, this, &AudioRecorder::preLabel);
     connect(ui->playbackButton, &QToolButton::clicked, this, &AudioRecorder::playRecordedAudio);
+    connect(ui->recordButton, &QPushButton::clicked, this, &AudioRecorder::toggleRecord);
 }
 
 void AudioRecorder::updateProgress(qint64 duration)
@@ -412,6 +413,7 @@ void AudioRecorder::preLabel() {
     ui->nextLabelButton->setText("Next label\n(" + QString::fromStdString(std::to_string(labelNum + 1)) + "/" + QString::fromStdString(std::to_string(commandList.size())) + ")");
     ui->nextLabelButton->setStyleSheet("QPushButton{ color: white;}");
     ui->recordButton->setStyleSheet("QPushButton{ color: green;}");
+    ui->recordButton->setEnabled(true);
     ui->commandLabel->setText(QString::fromStdString(commandList[labelNum]));
     QString outputFilename = m_resultFolderLocation + "/" + ui->commandLabel->text().replace(" ", "_");
     qDebug() << outputFilename;
@@ -459,6 +461,7 @@ void AudioRecorder::nextLabel()
             ui->nextLabelButton->setStyleSheet("QPushButton{ color: red;}");
             ui->recordButton->setStyleSheet("QPushButton{ color: green;}");
             ui->recordButton->setText("Record");
+            ui->recordButton->setEnabled(true);
 
             ui->nextLabelButton->setEnabled(false);
             QString outputFilename = m_resultFolderLocation + "/" + ui->commandLabel->text().replace(" ", "_");

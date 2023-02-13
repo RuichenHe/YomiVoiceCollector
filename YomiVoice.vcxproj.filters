@@ -36,9 +36,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="YomiVoice.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="audiolevel.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -50,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ui_YomiVoice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="YomiVoice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

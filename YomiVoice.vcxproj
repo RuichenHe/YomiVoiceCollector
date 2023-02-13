@@ -99,7 +99,7 @@
     <ClCompile Include="YomiVoice.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="YomiVoice.h" />
+    <ClInclude Include="YomiVoice.h" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="YomiVoice.qrc" />
