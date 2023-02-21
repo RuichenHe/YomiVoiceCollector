@@ -24,15 +24,14 @@ template <class T>
 static QVector<qreal> getBufferLevels(const T* buffer, int frames, int channels);
 //Set the command here.
 std::vector<std::string> commandList{
-    "Yomi pause", "Yomi free", "Yomi baseline", "Tooth 1", "Tooth 2", "Tooth 3", "Tooth 4", "Tooth 5", "Tooth 6", 
-    "Tooth 7", "Tooth 8", "Tooth 9", "Tooth 10", "Tooth 11", "Tooth 12", "Tooth 13", "Tooth 14", "Tooth 15", 
-    "Tooth 16", "Tooth 17", "Tooth 18", "Tooth 19", "Tooth 20", "Tooth 21", "Tooth 22", "Tooth 23", "Tooth 24", 
-    "Tooth 25", "Tooth 26", "Tooth 27", "Tooth 28", "Tooth 29", "Tooth 30", "Tooth 31", "Tooth 32", 
-    "Previous page", "Next page"
+    "Yomi pause", "Yomi free", "Yomi baseline", "Yomi guided", "Tooth 1", "Tooth 2", "Tooth 3", "Tooth 4", 
+    "Tooth 5", "Tooth 6", "Tooth 7", "Tooth 8", "Tooth 9", "Tooth 10", "Tooth 11", "Tooth 12", "Tooth 13", 
+    "Tooth 14", "Tooth 15", "Tooth 16", "Tooth 17", "Tooth 18", "Tooth 19", "Tooth 20", "Tooth 21", 
+    "Tooth 22", "Tooth 23", "Tooth 24", "Tooth 25", "Tooth 26", "Tooth 27", "Tooth 28", "Tooth 29", 
+    "Tooth 30", "Tooth 31", "Tooth 32", "Previous page", "Next page",
+    "Move buccal", "Move lingual", "Move distal", "Move mesial",
+    "Move apical", "Move coronal"
 };
-//std::vector<std::string> commandList{
-//    "Yomi pause", "Yomi free", "Yomi baseline"
-//};
 AudioRecorder::AudioRecorder()
     : ui(new Ui::AudioRecorder)
 {
