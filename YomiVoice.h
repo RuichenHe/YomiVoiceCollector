@@ -5,7 +5,7 @@
 #include <QMediaRecorder>
 #include <QUrl>
 #include <QtMultimedia/qsoundeffect.h>
-
+#include <fstream>
 QT_BEGIN_NAMESPACE
 namespace Ui { class AudioRecorder; }
 class QAudioRecorder;
@@ -50,6 +50,7 @@ private:
     QAudioRecorder* m_audioRecorder = nullptr;
     QAudioProbe* m_probe = nullptr;
     int labelNum = -1;
+    std::vector<std::string> commandList;
     QList<AudioLevel*> m_audioLevels;
     bool m_outputLocationSet = false;
     bool m_recordReady = false;
