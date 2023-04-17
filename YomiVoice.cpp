@@ -53,39 +53,6 @@ AudioRecorder::AudioRecorder()
         qDebug() << QString::fromStdString(line);
         commandList.push_back(line);
     }
-    //audio codecs
-    /*for (auto& codecName : m_audioRecorder->supportedAudioCodecs()) {
-        ui->audioCodecBox->addItem(codecName, QVariant(codecName));
-    }*/
-
-    //containers
-    /*for (auto& containerName : m_audioRecorder->supportedContainers()) {
-        ui->containerBox->addItem(containerName, QVariant(containerName));
-    }*/
-
-    //sample rate
-    /*ui->sampleRateBox->addItem(tr("Default"), QVariant(0));
-    for (int sampleRate : m_audioRecorder->supportedAudioSampleRates()) {
-        ui->sampleRateBox->addItem(QString::number(sampleRate), QVariant(
-            sampleRate));
-    }*/
-
-    //channels
-    /*ui->channelsBox->addItem(tr("Default"), QVariant(-1));
-    ui->channelsBox->addItem(QStringLiteral("1"), QVariant(1));
-    ui->channelsBox->addItem(QStringLiteral("2"), QVariant(2));
-    ui->channelsBox->addItem(QStringLiteral("4"), QVariant(4));*/
-
-    //quality
-    //ui->qualitySlider->setRange(0, int(QMultimedia::VeryHighQuality));
-    //ui->qualitySlider->setValue(int(QMultimedia::NormalQuality));
-
-    ////bitrates:
-    //ui->bitrateBox->addItem(tr("Default"), QVariant(0));
-    //ui->bitrateBox->addItem(QStringLiteral("32000"), QVariant(32000));
-    //ui->bitrateBox->addItem(QStringLiteral("64000"), QVariant(64000));
-    //ui->bitrateBox->addItem(QStringLiteral("96000"), QVariant(96000));
-    //ui->bitrateBox->addItem(QStringLiteral("128000"), QVariant(128000));
 
     connect(m_audioRecorder, &QAudioRecorder::durationChanged, this, &AudioRecorder::updateProgress);
     connect(m_audioRecorder, &QAudioRecorder::statusChanged, this, &AudioRecorder::updateStatus);
